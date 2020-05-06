@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import RoomProvider, { RoomContext, RoomConsumer } from '../context';
+import Loading from '../components/Loading';
 
 class FeaturedRooms extends Component {
   // connecting to the context
   static contextType = RoomContext;
 
   render() {
-    const { featuredRooms } = this.context;
+    const { featuredRooms, loading } = this.context;
 
-    return <div>{featuredRooms.map((room) => room.name)}</div>;
+    return loading ? <Loading /> : 'loaded';
   }
 }
 
