@@ -14,7 +14,6 @@ class RoomProvider extends Component {
   componentDidMount() {
     let rooms = this.formatData(items);
     let featuredRooms = rooms.filter((room) => room.featured === true);
-
     // this substitutes redux and actions
     // normally we would dispatch an action, this would be
     // handled in reducer
@@ -45,9 +44,16 @@ class RoomProvider extends Component {
     return tempItems;
   };
 
+  getRoomData = (slug) => {
+    let room = [...this.state.rooms].find((room) => room.slug === slug);
+    return room;
+  };
+
   render() {
     return (
-      <RoomContext.Provider value={{ ...this.state }}>
+      <RoomContext.Provider
+        value={{ ...this.state, getRoomData: this.getRoomData }}
+      >
         {this.props.children}
       </RoomContext.Provider>
     );
