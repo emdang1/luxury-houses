@@ -6,7 +6,7 @@ import { withConsumer } from '../context';
 import Loading from '../components/Loading';
 
 const RoomsContainer = ({ context }) => {
-  const { loading, rooms, sortedRooms } = context;
+  const { loading, sortedRooms } = context;
 
   if (loading) {
     return <Loading />;
@@ -14,7 +14,7 @@ const RoomsContainer = ({ context }) => {
 
   return (
     <>
-      <RoomsFilter rooms={rooms} />
+      <RoomsFilter />
       <RoomsList rooms={sortedRooms} />
     </>
   );

@@ -9,6 +9,15 @@ class RoomProvider extends Component {
     sortedRooms: [],
     featuredRooms: [],
     loading: true,
+    type: 'all',
+    capacity: 1,
+    price: 0,
+    minPrice: 0,
+    maxPrice: 0,
+    minSize: 0,
+    maxSize: 0,
+    breakfast: false,
+    pets: false,
   };
 
   componentDidMount() {
@@ -49,10 +58,47 @@ class RoomProvider extends Component {
     return room;
   };
 
+  handleChange = (event) => {
+    const name = event.target.name;
+    const value =
+      event.target.type === 'checkbox'
+        ? event.target.checked
+        : event.target.value;
+
+    this.setState(
+      {
+        [name]: value,
+      },
+      this.filterRooms
+    );
+  };
+
+  filterRooms = () => {
+    let { rooms, type, capacity } = this.state;
+    let tempRooms = [...rooms];
+    capacity = +capacity;
+
+    if (type !== 'all') {
+      tempRooms = tempRooms.filter((room) => room.type === type);
+    }
+
+    if (capacity !== 1) {
+      tempRooms = tempRooms.filter((room) => room.capacity >= capacity);
+    }
+
+    this.setState({
+      sortedRooms: tempRooms,
+    });
+  };
+
   render() {
     return (
       <RoomContext.Provider
-        value={{ ...this.state, getRoomData: this.getRoomData }}
+        value={{
+          ...this.state,
+          getRoomData: this.getRoomData,
+          handleChange: this.handleChange,
+        }}
       >
         {this.props.children}
       </RoomContext.Provider>
