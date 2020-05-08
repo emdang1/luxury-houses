@@ -23,6 +23,8 @@ class RoomProvider extends Component {
   componentDidMount() {
     let rooms = this.formatData(items);
     let featuredRooms = rooms.filter((room) => room.featured === true);
+    let maxPrice = Math.max(...rooms.map((room) => room.price));
+    let maxSize = Math.max(...rooms.map((room) => room.size));
     // this substitutes redux and actions
     // normally we would dispatch an action, this would be
     // handled in reducer
@@ -32,6 +34,9 @@ class RoomProvider extends Component {
       featuredRooms,
       sortedRooms: rooms,
       loading: false,
+      maxPrice: maxPrice,
+      maxSize: maxSize,
+      price: maxPrice,
     });
   }
 
@@ -74,9 +79,19 @@ class RoomProvider extends Component {
   };
 
   filterRooms = () => {
-    let { rooms, type, capacity } = this.state;
+    let {
+      rooms,
+      type,
+      capacity,
+      price,
+      minSize,
+      maxSize,
+      breakfast,
+      pets,
+    } = this.state;
     let tempRooms = [...rooms];
     capacity = +capacity;
+    price = +price;
 
     if (type !== 'all') {
       tempRooms = tempRooms.filter((room) => room.type === type);
@@ -84,6 +99,20 @@ class RoomProvider extends Component {
 
     if (capacity !== 1) {
       tempRooms = tempRooms.filter((room) => room.capacity >= capacity);
+    }
+
+    tempRooms = tempRooms.filter((room) => room.price <= price);
+
+    tempRooms = tempRooms.filter(
+      (room) => room.size >= minSize && room.size <= maxSize
+    );
+
+    if (breakfast) {
+      tempRooms = tempRooms.filter((room) => room.breakfast === true);
+    }
+
+    if (pets) {
+      tempRooms = tempRooms.filter((room) => room.pets === true);
     }
 
     this.setState({
