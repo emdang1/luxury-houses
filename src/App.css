@@ -436,8 +436,8 @@ h6 {
 }
 /* end of single room*/
 /* roomlist */
-.roomslist {
-  padding: 5rem 0;
+.roomsList {
+  padding: 3rem 0;
 }
 .roomslist-center {
   width: 80vw;
