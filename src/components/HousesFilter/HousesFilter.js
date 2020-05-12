@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { RoomContext } from '../context';
-import Title from './Title';
+import { HouseContext } from '../../context';
+import Title from '../Title/Title';
+import './HousesFilter.css';
 
 const HousesFilter = () => {
   const {
-    rooms,
+    houses,
     type,
     capacity,
     price,
@@ -12,15 +13,15 @@ const HousesFilter = () => {
     maxPrice,
     minSize,
     maxSize,
-    breakfast,
+    pool,
     pets,
     handleChange,
-  } = useContext(RoomContext);
+  } = useContext(HouseContext);
 
-  const roomTypes = rooms.map((room) => room.type);
-  const onlyUniqueTypes = ['all', ...new Set(roomTypes)];
+  const houseTypes = houses.map((house) => house.type);
+  const onlyUniqueTypes = ['all', ...new Set(houseTypes)];
 
-  const capacityValues = rooms.map((room) => room.capacity);
+  const capacityValues = houses.map((house) => house.capacity);
   const onlyUniqueCapacity = [...new Set(capacityValues)];
 
   return (
@@ -102,12 +103,12 @@ const HousesFilter = () => {
           <div className='single-extra'>
             <input
               type='checkbox'
-              name='breakfast'
-              id='breakfast'
-              checked={breakfast}
+              name='pool'
+              id='pool'
+              checked={pool}
               onChange={handleChange}
             />
-            <label htmlFor='breakfast'>Breakfast</label>
+            <label htmlFor='pool'>Pool</label>
           </div>
 
           <div className='single-extra'>

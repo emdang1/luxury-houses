@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import RoomProvider from './context';
+import HouseProvider from './context';
 
 ReactDOM.render(
-  <RoomProvider>
+  <HouseProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </RoomProvider>,
+  </HouseProvider>,
   document.getElementById('root')
 );

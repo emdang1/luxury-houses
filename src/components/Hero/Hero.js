@@ -1,4 +1,5 @@
 import React from 'react';
+import './Hero.css';
 
 const Hero = ({ children, hero }) => {
   return <header className={hero}>{children}</header>;
@@ -6,7 +7,6 @@ const Hero = ({ children, hero }) => {
 
 export default Hero;
 
-// default value for "hero" prop, if not stated
 Hero.defaultProps = {
   hero: 'defaultHero',
 };

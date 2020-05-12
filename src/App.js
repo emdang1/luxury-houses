@@ -4,9 +4,9 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Houses from './pages/Houses';
-import SingleHouse from './pages/SingleHouse';
+import SingleHouse from './pages/SingleHouse/SingleHouse';
 import Error from './pages/Error';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (

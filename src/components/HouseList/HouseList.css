@@ -1,0 +1,23 @@
+.houseList {
+  padding: 3rem 0;
+}
+.houselist-center {
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 30px;
+}
+
+@media (min-width: 776px) {
+  .houselist-center {
+    width: 90vw;
+  }
+}
+@media (min-width: 992px) {
+  .houselist-center {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}

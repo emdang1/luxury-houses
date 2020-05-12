@@ -1,34 +1,23 @@
 import React, { Component } from 'react';
-import Banner from '../components/Banner';
+import Banner from '../../components/Banner/Banner';
 import { Link } from 'react-router-dom';
-import { RoomContext } from '../context';
-// import Hero from '../components/Hero';
-import StyledHero from '../components/StyledHero';
+import { HouseContext } from '../../context';
+import StyledHero from '../../components/StyledHero';
+import './SingleHouse.css';
 
 class SingleHouse extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      slug: this.props.match.params.slug,
-    };
-  }
-
-  // componentDidMount() {
-  //   console.log(this.props.match);
-  // }
-
-  static contextType = RoomContext;
+  static contextType = HouseContext;
 
   render() {
-    const { getRoomData } = this.context;
-    const room = getRoomData(this.state.slug);
-    if (!room) {
+    const { getHouseData } = this.context;
+    const house = getHouseData(this.props.match.params.slug);
+
+    if (!house) {
       return (
         <div className='error'>
-          <h3>no such room could be found... </h3>
-          <Link to='/rooms' className='btn-primary'>
-            Back to rooms
+          <h3>no such house could be found... </h3>
+          <Link to='/houses' className='btn-primary'>
+            Back to houses
           </Link>
         </div>
       );
@@ -41,26 +30,27 @@ class SingleHouse extends Component {
       size,
       price,
       extras,
-      breakfast,
+      pool,
       pets,
       images,
-    } = room;
+    } = house;
     return (
       <>
         <StyledHero img={images[0]}>
-          <Banner title={`${name} room`}>
-            <Link to='/rooms' className='btn-primary'>
-              Back to rooms
+          <Banner title={`${name} house`}>
+            <Link to='/houses' className='btn-primary'>
+              Back to houses
             </Link>
           </Banner>
         </StyledHero>
-        <section className='single-room'>
-          <div className='single-room-images'>
+
+        <section className='single-house'>
+          <div className='single-house-images'>
             {images.map((imgUrl, i) => (
-              <img key={i} src={imgUrl} alt='room pic' />
+              <img key={i} src={imgUrl} alt='single pic' />
             ))}
           </div>
-          <div className='single-room-info'>
+          <div className='single-house-info'>
             <article>
               <h3>Details</h3>
               <p>{description}</p>
@@ -74,12 +64,12 @@ class SingleHouse extends Component {
                 {capacity > 1 ? `${capacity} People` : `${capacity} person`}
               </h6>
               <h6>Pets: {pets ? 'Allowed' : 'Not allowed'}</h6>
-              <h6>{breakfast && 'Free breakfast included'}</h6>
+              <h6>Pool: {pool ? 'Yes' : 'No'}</h6>
             </article>
           </div>
         </section>
-        <section className='room-extras'>
-          <h6>Extras</h6>
+        <section className='house-extras'>
+          <h3>Extras</h3>
           <ul className='extras'>
             {extras.map((item, i) => (
               <li key={i}>*{item}</li>

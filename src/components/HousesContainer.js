@@ -1,11 +1,11 @@
 import React from 'react';
-import HouseList from './HouseList';
-import HousesFilter from './HousesFilter';
+import HouseList from './HouseList/HouseList';
+import HousesFilter from './HousesFilter/HousesFilter';
 import { withConsumer } from '../context';
-import Loading from '../components/Loading';
+import Loading from './Loading/Loading';
 
 const HousesContainer = ({ context }) => {
-  const { loading, sortedRooms } = context;
+  const { loading, sortedHouses } = context;
 
   if (loading) {
     return <Loading />;
@@ -14,7 +14,7 @@ const HousesContainer = ({ context }) => {
   return (
     <>
       <HousesFilter />
-      <HouseList rooms={sortedRooms} />
+      <HouseList houses={sortedHouses} />
     </>
   );
 };
