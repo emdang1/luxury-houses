@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import RoomProvider, { RoomContext, RoomConsumer } from '../context';
-import Loading from '../components/Loading';
+import Loading from './Loading';
 import Room from './Room';
 import Title from './Title';
 
-class FeaturedRooms extends Component {
+class FeaturedHouses extends Component {
   // connecting to the context
   static contextType = RoomContext;
 
@@ -14,7 +14,7 @@ class FeaturedRooms extends Component {
 
     return (
       <section className='featured-rooms'>
-        <Title title='featured rooms' />
+        <Title title='featured houses' />
         <div className='featured-rooms-center'>
           {loading ? <Loading /> : rooms}
         </div>
@@ -23,4 +23,4 @@ class FeaturedRooms extends Component {
   }
 }
 
-export default FeaturedRooms;
+export default FeaturedHouses;

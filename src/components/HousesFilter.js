@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { RoomContext } from '../context';
 import Title from './Title';
 
-const RoomsFilter = () => {
+const HousesFilter = () => {
   const {
     rooms,
     type,
@@ -22,14 +22,13 @@ const RoomsFilter = () => {
 
   const capacityValues = rooms.map((room) => room.capacity);
   const onlyUniqueCapacity = [...new Set(capacityValues)];
-  console.log('unique', onlyUniqueCapacity);
 
   return (
     <section className='filter-container'>
-      <Title title='search rooms' />
+      <Title title='search houses' />
       <form className='filter-form'>
         <div className='form-group'>
-          <label htmlFor='type'>room type</label>
+          <label htmlFor='type'>house type</label>
           <select
             name='type'
             id='type'
@@ -77,7 +76,7 @@ const RoomsFilter = () => {
         </div>
 
         <div className='form-group'>
-          <label htmlFor='size'>room size</label>
+          <label htmlFor='size'>house size</label>
           <div className='size-inputs'>
             <input
               type='number'
@@ -127,4 +126,4 @@ const RoomsFilter = () => {
   );
 };
 
-export default RoomsFilter;
+export default HousesFilter;

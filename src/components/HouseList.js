@@ -1,11 +1,11 @@
 import React from 'react';
 import Room from './Room';
 
-const RoomsList = ({ rooms }) => {
+const HouseList = ({ rooms }) => {
   if (rooms.length === 0) {
     return (
       <div className='empty-search'>
-        <h3>unfortunately no rooms matched your search parameters</h3>
+        <h3>unfortunately no houses matched your search parameters</h3>
       </div>
     );
   }
@@ -21,4 +21,4 @@ const RoomsList = ({ rooms }) => {
   );
 };
 
-export default RoomsList;
+export default HouseList;

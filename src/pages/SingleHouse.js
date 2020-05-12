@@ -5,7 +5,7 @@ import { RoomContext } from '../context';
 // import Hero from '../components/Hero';
 import StyledHero from '../components/StyledHero';
 
-class SingleRoom extends Component {
+class SingleHouse extends Component {
   constructor(props) {
     super(props);
 
@@ -91,4 +91,4 @@ class SingleRoom extends Component {
   }
 }
 
-export default SingleRoom;
+export default SingleHouse;

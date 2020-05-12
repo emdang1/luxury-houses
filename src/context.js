@@ -1,5 +1,6 @@
 import React, { Component, createContext } from 'react';
-import items from './data';
+// import items from './data';
+import client from './Contentful';
 
 export const RoomContext = createContext();
 
@@ -20,24 +21,37 @@ class RoomProvider extends Component {
     pets: false,
   };
 
-  componentDidMount() {
-    let rooms = this.formatData(items);
-    let featuredRooms = rooms.filter((room) => room.featured === true);
-    let maxPrice = Math.max(...rooms.map((room) => room.price));
-    let maxSize = Math.max(...rooms.map((room) => room.size));
-    // this substitutes redux and actions
-    // normally we would dispatch an action, this would be
-    // handled in reducer
+  getData = async () => {
+    try {
+      const response = await client.getEntries({
+        content_type: 'luxuryHouses',
+      });
+      console.log(response);
 
-    this.setState({
-      rooms,
-      featuredRooms,
-      sortedRooms: rooms,
-      loading: false,
-      maxPrice: maxPrice,
-      maxSize: maxSize,
-      price: maxPrice,
-    });
+      let rooms = this.formatData(response.items);
+      let featuredRooms = rooms.filter((room) => room.featured === true);
+      let maxPrice = Math.max(...rooms.map((room) => room.price));
+      let maxSize = Math.max(...rooms.map((room) => room.size));
+      // this substitutes redux and actions
+      // normally we would dispatch an action, this would be
+      // handled in reducer
+
+      this.setState({
+        rooms,
+        featuredRooms,
+        sortedRooms: rooms,
+        loading: false,
+        maxPrice: maxPrice,
+        maxSize: maxSize,
+        price: maxPrice,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  componentDidMount() {
+    this.getData();
   }
 
   formatData = (items) => {

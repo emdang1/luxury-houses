@@ -3,8 +3,8 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './pages/Home';
-import Rooms from './pages/Rooms';
-import SingleRoom from './pages/SingleRoom';
+import Houses from './pages/Houses';
+import SingleHouse from './pages/SingleHouse';
 import Error from './pages/Error';
 import Navbar from './components/Navbar';
 
@@ -14,8 +14,8 @@ function App() {
       <Navbar />
       <Switch>
         <Route path='/' exact component={Home} />
-        <Route path='/rooms/:slug' component={SingleRoom} />
-        <Route path='/rooms' component={Rooms} />
+        <Route path='/houses/:slug' component={SingleHouse} />
+        <Route path='/houses' component={Houses} />
         <Route component={Error} />
       </Switch>
     </div>
